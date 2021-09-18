@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="ISO-8859-1">
+<title>Add product</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<style type="text/css">
+	
+	   a{
+	   
+			color:white;
+			margin-left:7vw;
+	
+		}
+		
+		a:hover{
+		
+		color:black;
+		
+		}
+		td{
+		min-width:13vw;
+		}
+		
+		.logout{
+		margin-top:0.5vh;
+	    margin-left:20vw;
+		background-color:black;
+		color:white;
+		border-radius:10px;
+		}
+		.logout:hover{
+		cursor:pointer;
+		background-color:white;
+		color:black;
+		}
+		button{
+		min-width:30vh;
+		margin-top:5vh;
+		margin-left:7vw;
+		
+		}
+		
+		nav{
+		    display: flex;
+			justify-content: space-around;
+			align-items: center;
+			min-height: 8vh;
+			border-radius:7px;
+			margin-top:5px;
+			margin-right:5px;
+			margin-left:5px;
+		}
+		.container{
+		margin:auto;
+		color:white;
+		width:30vw;
+		min-height:47vh;
+		margin-top:10vh;
+		border-radius:10px;
+		}
+	
+	</style>
+	
+	
+</head>
+<body>
+<nav class="navbar navbar-dark bg-info">
+      
+      <div class="nav">
+      <a class="nav-item nav-link active" th:href="@{/admin/adminHome}">Home<span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link"th:href="@{/admin/showStatistics}">Show Statistics</a>
+      <a class="nav-item nav-link" th:href="@{/admin/addProduct}">Add Product</a>
+      <a class="nav-item nav-link" th:href="@{/admin/viewProducts}">All Products</a>
+      <div id="logout">
+      <form name="logoutForm" th:action="@{/logout}" method="post">
+					<input class="logout" type="submit" value="Log Out"/>
+	  </form>
+      </div>
+      </div>
+ </nav>
+<h2 class="text-center" id="error" style="color:red"></h2>
+<div class="container bg-info">
+<table>
+<form action="#" th:action="@{/admin/saveProduct}" th:object="${product}" method="POST" id="form">
+
+<tr><td>Product Name : </td><td><input type="text" id="name"  required th:field="*{name}" placeholder="Product Name"/></td></tr>
+<br>
+<tr><td>Price(tk) : </td><td><input type="number" id="price" required th:field="*{price}" placeholder="Price"/></td></tr>
+<br>
+<tr><td>Profit(%) : </td><td><input type="number" id="profit" required th:field="*{profit}" placeholder="Profit"/></td></tr>
+<br>
+<input type="hidden" th:field="*{type}" id="type" />
+<input type="hidden" th:field="*{id}" id="id" />
+</form>
+</table>
+<button class="btn btn-dark" th:onclick="'save();'">Save</button>
+</div>
+</body>
+<script>
+function save()
+{
+  var name=document.getElementById('name').value.trim();
+  var price=document.getElementById('price').value;
+  var profit=document.getElementById('profit').value;
+  
+  if(name!="" && price>0 && profit>=0)
+	  {
+	  document.forms['form'].submit();
+	  }
+  else
+	  {
+	  document.getElementById('error').innerHTML="Invalid Input"; 
+	  }
+   
+}
+</script>
+</html>

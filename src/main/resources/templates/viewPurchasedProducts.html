@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="ISO-8859-1">
+<title>All Products</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+	<style type="text/css">
+	
+	   a{
+	   
+			color:white;
+			margin-left:15vw;
+	
+		}
+		
+		a:hover{
+		
+		color:black;
+		
+		}
+		
+		.logout{
+		margin-top:0.5vh;
+	    margin-left:20vw;
+		background-color:black;
+		color:white;
+		border-radius:10px;
+		}
+		.logout:hover{
+		cursor:pointer;
+		background-color:white;
+		color:black;
+		}
+		
+		nav{
+		    display: flex;
+			justify-content: space-around;
+			align-items: center;
+			min-height: 8vh;
+			border-radius:7px;
+			margin-top:5px;
+			margin-right:5px;
+			margin-left:5px;
+		}
+	
+	</style>
+	
+	
+</head>
+<body>
+<nav class="navbar navbar-dark bg-primary">
+      
+      <div class="nav">
+      <a class="nav-item nav-link active" th:href="@{/user/userHome}">Home<span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" th:href="@{/user/viewPurchasedProducts}">All Purchased Products</a>
+      <a class="nav-item nav-link" th:href="@{/}">Index</a>
+      <div id="logout">
+      <form name="logoutForm" th:action="@{/logout}" method="post">
+					<input class="logout" type="submit" value="Log Out"/>
+	  </form>
+      </div>
+      </div>
+ </nav>
+<h1 class="text-center">All Purchased Products</h1>
+<table border="1"  class="table table-striped table-responsive-md">
+<thead>
+<tr>
+<th>Product Name</th>
+<th>Type</th>
+<th>Price(tk)</th>
+</tr>
+</thead>
+<tbody>
+ <tr th:each="sale : ${listSale}">
+ <td th:text="${sale.product.name}"></td>
+ <td th:text="${sale.product.type}"></td>
+ <td th:text="${sale.product.price}"></td>
+ </tr>
+</tbody>
+</table>
+</body>
+</html>

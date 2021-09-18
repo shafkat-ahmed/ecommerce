@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+<meta charset="ISO-8859-1">
+<title>All Products</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<style type="text/css">
+	
+	  .nav a{
+	   
+			color:white;
+			margin-left:7vw;
+	
+		}
+		
+		.nav a:hover{
+		
+		color:black;
+		
+		}
+		td{
+		max-width:13vw;
+		}
+		
+		.logout{
+		margin-top:0.5vh;
+	    margin-left:20vw;
+		background-color:black;
+		color:white;
+		border-radius:10px;
+		}
+		.logout:hover{
+		cursor:pointer;
+		background-color:white;
+		color:black;
+		}
+		button{
+		min-width:30vh;
+		margin-top:1vh;
+		
+		}
+		
+		nav{
+		    display: flex;
+			justify-content: space-around;
+			align-items: center;
+			min-height: 8vh;
+			border-radius:7px;
+			margin-top:5px;
+			margin-right:5px;
+			margin-left:5px;
+		}
+	
+	</style>
+	
+	
+</head>
+<body>
+<nav class="navbar navbar-dark bg-info">
+      
+      <div class="nav">
+      <a class="nav-item nav-link active" th:href="@{/admin/adminHome}">Home<span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" th:href="@{/admin/showStatistics}">Show Statistics</a>
+      <a class="nav-item nav-link" th:href="@{/admin/addProduct}">Add Product</a>
+      <a class="nav-item nav-link" th:href="@{/admin/viewProducts}">All Products</a>
+      <div id="logout">
+      <form name="logoutForm" th:action="@{/logout}" method="post">
+					<input class="logout" type="submit" value="Log Out"/>
+	  </form>
+      </div>
+      </div>
+ </nav>
+<h1 class="text-center">Total Products Sold : </h1>
+<h2 class="text-center"  th:text="${sold}"></h2>
+</body>
+</html>
